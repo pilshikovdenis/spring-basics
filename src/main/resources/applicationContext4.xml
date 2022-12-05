@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--    connect properties file to application-->
+    <context:property-placeholder location="classpath:introduction.properties"/>
+
+
+    <bean id="myDog"
+          class="com.pilshikov.spring_course.introduction4.Dog">
+    </bean>
+
+    <bean id="myCat"
+          class="com.pilshikov.spring_course.introduction4.Cat">
+    </bean>
+
+    <!--    this bean use hardcoded values to create object-->
+    <bean id="myPerson"
+          class="com.pilshikov.spring_course.introduction4.Person">
+        <property name="pet" ref="myCat"/>
+        <property name="surname" value="Pilshikov"/>
+        <property name="age" value="23"/>
+    </bean>
+
+    <!--    this bean using properties file, no hardcoded -->
+    <bean id="myPerson2"
+          class="com.pilshikov.spring_course.introduction4.Person">
+        <property name="pet" ref="myDog"/>
+        <property name="surname" value="${person.surname}"/>
+        <property name="age" value="${person.age}"/>
+    </bean>
+
+
+</beans>
